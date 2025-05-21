@@ -8,23 +8,12 @@
     <style>
       @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
       @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
-      .list::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: #f5f5f5;
-      }
-
-      .list::-webkit-scrollbar {
-        width: 6px;
-        background-color: #f5f5f5;
-      }
-
-      .list::-webkit-scrollbar-thumb {
-        background-color: #646464;
-      }
-
+      
       body {
         background-color: #b394c9;
         font-family: "Amatic SC";
+        background-image: url("lotto-2.png");
+        background-repeat: repeat;
       }
 
       #root {
@@ -44,6 +33,7 @@
         padding: 1rem;
         border-radius: 5px;
         box-shadow: 7px 9px 7px #00000052;
+        overflow: hidden;
       }
       .container .leader {
         display: flex;
@@ -71,7 +61,7 @@
       }
       .container .topLeadersList .image {
         border-radius: 50%;
-        border: 3px solid #b159ffcc;
+        border: 3px solid #e7193f;
       }
       .container .topLeadersList .leader:nth-child(1) {
         color: black;
@@ -174,7 +164,7 @@
         font-size: 22px;
       }
       .container .player {
-        background-color: #330b7775;
+        background-color: #780629;
         display: grid;
         grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
         align-items: center;
@@ -210,7 +200,7 @@
         font-family: "Roboto Condensed", sans-serif;
       }
       .container .playerslist .player:nth-child(odd) {
-        background-color: #b159ffcc;
+        background-color: #e7193f;
         align-items: center;
       }
       .container .user {
