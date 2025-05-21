@@ -1,5 +1,3 @@
-# Lottolista
-
 | Navn    | Gevinst |
 | -------- | ------- |
 | Espen S  | 9090,- |
