@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <title>🎲 Lottolista</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     <style>
@@ -227,71 +229,53 @@
     <div id="root"></div>
 
     <script>
-      // import React, { useRef } from "https://cdn.skypack.dev/react@17.0.1";
-      // import ReactDOM from "https://cdn.skypack.dev/react-dom@17.0.1";
-
       const App = () => {
-        const dados = [
-          {
-            id: 1,
-            name: "Halvor",
-            image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-            coins: 200,
-          },
-          {
-            id: 1,
-            name: "Laura",
-            image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-            coins: 500,
-          },
-          {
-            id: 1,
-            name: "Laura",
-            image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-            coins: 500,
-          },
-          {
-            id: 1,
-            name: "Laura",
-            image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-            coins: 500,
-          },
-          {
-            id: 1,
-            name: "Laura",
-            image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-            coins: 500,
-          },
-          {
-            id: 1,
-            name: "Laura",
-            image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-            coins: 500,
-          },
-        ];
+        const [data, setData] = React.useState(null);
 
-        return /*#__PURE__*/ React.createElement(
+        React.useEffect(() => {
+          fetch("data.json")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  "Network response was not ok " + response.statusText
+                );
+              }
+              return response.json();
+            })
+            .then((data) => {
+              setData(data.sort((a, b) => b.vunnet - a.vunnet));
+            })
+            .catch((error) => {
+              console.error("Fetch error:", error);
+            });
+        }, []);
+
+        if (!data) {
+          return React.createElement("div", { className: "container" }, "Loading...");
+        }
+
+        return React.createElement(
           "div",
-          { className: "container" } /*#__PURE__*/,
+          { className: "container" },
           React.createElement(
             "div",
             { className: "topLeadersList" },
-            dados.map((leader, index /*#__PURE__*/) =>
+            data.map((leader, index) =>
               React.createElement(
                 "div",
                 { className: "leader", key: leader.id },
-                index + 1 <= 3 /*#__PURE__*/ &&
+                index + 1 <= 3 &&
                   React.createElement(
                     "div",
-                    { className: "containerImage" } /*#__PURE__*/,
+                    { className: "containerImage" },
                     React.createElement("img", {
                       className: "image",
                       loading: "lazy",
                       src: leader.image,
-                    }) /*#__PURE__*/,
+                    }),
                     React.createElement(
                       "div",
-                      { className: "crown" } /*#__PURE__*/,
+                      { className: "crown" },
                       React.createElement(
                         "svg",
                         {
@@ -300,7 +284,7 @@
                           "data-name": "Layer 1",
                           xmlns: "http://www.w3.org/2000/svg",
                           viewBox: "0 0 100 50",
-                        } /*#__PURE__*/,
+                        },
 
                         React.createElement("polygon", {
                           className: "cls-1",
@@ -308,7 +292,7 @@
                             "12.7 50 87.5 50 100 0 75 25 50 0 25.6 25 0 0 12.7 50",
                         })
                       )
-                    ) /*#__PURE__*/,
+                    ),
 
                     React.createElement(
                       "div",
@@ -318,50 +302,39 @@
                   )
               )
             )
-          ) /*#__PURE__*/,
+          ),
 
           React.createElement(
             "div",
-            { className: "playerslist" } /*#__PURE__*/,
+            { className: "playerslist" },
             React.createElement(
               "div",
-              { className: "table" } /*#__PURE__*/,
-              React.createElement("div", null, "#") /*#__PURE__*/,
+              { className: "table" },
+              React.createElement("div", null, "#"),
 
-              React.createElement("div", null, "Name") /*#__PURE__*/,
+              React.createElement("div", null, "Navn"),
 
-              React.createElement("div", null, "Coins") /*#__PURE__*/,
-            ) /*#__PURE__*/,
+              React.createElement("div", null, "Gevinst")
+            ),
 
             React.createElement(
               "div",
               { className: "list" },
-              dados.map((leader, index /*#__PURE__*/) =>
+              data.map((leader, index) =>
                 React.createElement(
                   "div",
-                  { className: "player", key: leader.id } /*#__PURE__*/,
-                  React.createElement(
-                    "span",
-                    null,
-                    " ",
-                    index + 1
-                  ) /*#__PURE__*/,
+                  { className: "player", key: leader.id },
+                  React.createElement("span", null, " ", index + 1),
                   React.createElement(
                     "div",
-                    { className: "user" } /*#__PURE__*/,
+                    { className: "user" },
                     React.createElement("img", {
                       className: "image",
                       src: leader.image,
-                    }) /*#__PURE__*/,
-                    React.createElement("span", null, " ", leader.name, " ")
-                  ) /*#__PURE__*/,
-                  React.createElement(
-                    "span",
-                    null,
-                    " ",
-                    leader.coins,
-                    " "
-                  ) /*#__PURE__*/,
+                    }),
+                    React.createElement("span", null, " ", leader.navn, " ")
+                  ),
+                  React.createElement("span", null, " ", leader.vunnet, " ")
                 )
               )
             )
@@ -370,7 +343,7 @@
       };
 
       ReactDOM.render(
-        /*#__PURE__*/ React.createElement(App, null),
+        React.createElement(App, null),
         document.getElementById("root")
       );
     </script>
