@@ -1,42 +1,52 @@
 [
   {
     "navn": "Espen S",
-    "vunnet": 9090
+    "vunnet": 9090,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_3.png"
   },
   {
     "navn": "Kenneth",
-    "vunnet": 446
+    "vunnet": 446,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_6.png"
   },
   {
     "navn": "Andreas",
-    "vunnet": 420
+    "vunnet": 420,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_4.png"
   },
   {
     "navn": "Bjørnar",
-    "vunnet": 285
+    "vunnet": 285,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_25.png"
   },
   {
     "navn": "Halvor",
-    "vunnet": 175
+    "vunnet": 175,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_16.png"
   },
   {
     "navn": "Henrik",
-    "vunnet": 150
+    "vunnet": 150,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_24.png"
   },
   {
     "navn": "Åshild",
-    "vunnet": 50
+    "vunnet": 50,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png"
   },
   {
     "navn": "Leif Erik",
-    "vunnet": 45
+    "vunnet": 45,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_27.png"
   },
   {
     "navn": "Steingrim",
-    "vunnet": 30
+    "vunnet": 30,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_11.png"
   },
   {
     "navn": "Rebecca",
-    "vunnet": 0
+    "vunnet": 0,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_10.png"
   }
 ]
