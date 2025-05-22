@@ -8,7 +8,7 @@
     <style>
       @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
       @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
-      
+
       body {
         background-color: #b394c9;
         font-family: "Amatic SC";
@@ -166,11 +166,12 @@
       .container .player {
         background-color: #780629;
         display: grid;
-        grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 0.4fr 3fr 1fr;
+        gap: 0.4rem;
         align-items: center;
         min-height: 42px;
         text-align: center;
-        padding-right: 0.4rem;
+        padding: 0.4rem 0.4rem 0.4rem 0;
       }
       .container .player .image {
         width: 28px;
@@ -181,7 +182,8 @@
         margin-right: 0.1rem;
         display: grid;
         font-size: 14px;
-        grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 0.4fr 3fr 1fr;
+        gap: 0.4rem;
         text-align: center;
       }
       .container .table div:nth-child(2) {
@@ -209,7 +211,7 @@
         gap: 4px;
       }
       .container .list {
-        overflow: scroll;
+        overflow: auto;
         height: 100%;
         overflow-x: hidden;
       }
@@ -241,7 +243,11 @@
         }, []);
 
         if (!data) {
-          return React.createElement("div", { className: "container" }, "Loading...");
+          return React.createElement(
+            "div",
+            { className: "container" },
+            "Loading..."
+          );
         }
 
         return React.createElement(
@@ -324,7 +330,13 @@
                     }),
                     React.createElement("span", null, " ", leader.navn, " ")
                   ),
-                  React.createElement("span", null, " ", leader.vunnet + ",-", " ")
+                  React.createElement(
+                    "span",
+                    null,
+                    " ",
+                    leader.vunnet + ",-",
+                    " "
+                  )
                 )
               )
             )
