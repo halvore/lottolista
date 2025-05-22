@@ -48,5 +48,10 @@
     "navn": "Rebecca",
     "vunnet": 0,
 	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_10.png"
+  },
+  {
+    "navn": "Julie",
+    "vunnet": 75,
+	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
   }
 ]
