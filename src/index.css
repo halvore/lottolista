@@ -43,13 +43,13 @@ body {
 }
 
 .logo-container {
-  height: 130px;
+  height: 120px;
   text-align: center;
 }
 
 .logo {
   object-fit: cover;
-  width: 200px;
+  width: 180px;
   height: 100%;
 }
 
@@ -212,7 +212,7 @@ body {
   height: 20px;
 }
 .container .playerslist {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-size: 16px;
   overflow: hidden;
   color: white;
