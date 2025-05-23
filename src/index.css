@@ -4,7 +4,7 @@
 body {
   background-color: #b394c9;
   font-family: "Amatic SC";
-  background-image: url("/assets/lotto-2.png");
+  background-image: url("../assets/lotto-2.png");
   background-repeat: repeat;
 }
 
