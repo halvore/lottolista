@@ -36,13 +36,25 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-
-  svg {
-    width: 3rem;
-  }
 }
 
-.total, .change {
+.crown svg {
+  width: 3rem;
+}
+
+.logo-container {
+  height: 130px;
+  text-align: center;
+}
+
+.logo {
+  object-fit: cover;
+  width: 200px;
+  height: 100%;
+}
+
+.total,
+.change {
   text-align: right;
 }
 
@@ -200,7 +212,7 @@ body {
   height: 20px;
 }
 .container .playerslist {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 16px;
   overflow: hidden;
   color: white;
