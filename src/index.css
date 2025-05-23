@@ -26,10 +26,10 @@ body {
   border-radius: 5px;
   box-shadow: 7px 9px 7px #00000052;
   overflow: hidden;
+}
 
-  .leader {
-    display: flex;
-  }
+.leader {
+  display: flex;
 }
 
 .crown {
@@ -40,6 +40,10 @@ body {
   svg {
     width: 3rem;
   }
+}
+
+.total, .change {
+  text-align: right;
 }
 
 .container .image {
@@ -162,12 +166,12 @@ body {
 .container .player {
   background-color: #780629;
   display: grid;
-  grid-template-columns: 0.4fr 3fr 1fr;
+  grid-template-columns: 0.4fr 3fr 1fr 1fr;
   gap: 0.4rem;
   align-items: center;
   min-height: 42px;
   text-align: center;
-  padding: 0.4rem 0.4rem 0 0;
+  padding: 0.4rem 1rem 0 0;
 }
 .container .player .image {
   width: 28px;
@@ -175,17 +179,22 @@ body {
   border: 1.5px solid white;
 }
 .container .table {
-  margin-right: 0.1rem;
+  margin-right: 1rem;
   display: grid;
   font-size: 14px;
-  grid-template-columns: 0.4fr 3fr 1fr;
+  grid-template-columns: 0.4fr 3fr 1fr 1fr;
   gap: 0.4rem;
   text-align: center;
 }
 .container .table div:nth-child(2) {
   text-align: left;
-  margin-left: 5px;
 }
+
+.container .table div:nth-child(3),
+.container .table div:last-child {
+  text-align: right;
+}
+
 .container .table .image {
   width: 20px;
   height: 20px;

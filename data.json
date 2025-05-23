@@ -1,57 +1,57 @@
 [
   {
     "navn": "Espen S",
-    "vunnet": 9090,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_3.png"
+    "vunnet": [[0, "2025-05-01"], [9090, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_3.png"
   },
   {
     "navn": "Kenneth",
-    "vunnet": 446,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_6.png"
+    "vunnet": [[0, "2025-05-01"], [446, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_6.png"
   },
   {
     "navn": "Andreas",
-    "vunnet": 420,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
+    "vunnet": [[0, "2025-05-01"], [420, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
   },
   {
     "navn": "Bjørnar",
-    "vunnet": 285,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_25.png"
+    "vunnet": [[0, "2025-05-01"], [285, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_25.png"
   },
   {
     "navn": "Halvor",
-    "vunnet": 175,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_16.png"
+    "vunnet": [[0, "2025-05-01"], [175, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_16.png"
   },
   {
     "navn": "Henrik",
-    "vunnet": 150,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_24.png"
+    "vunnet": [[0, "2025-05-01"], [150, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_24.png"
   },
   {
     "navn": "Åshild",
-    "vunnet": 50,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png"
+    "vunnet": [[0, "2025-05-01"], [50, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png"
   },
   {
     "navn": "Leif Erik",
-    "vunnet": 45,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_27.png"
+    "vunnet": [[0, "2025-05-01"], [45, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_27.png"
   },
   {
     "navn": "Steingrim",
-    "vunnet": 30,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_11.png"
+    "vunnet": [[0, "2025-05-01"], [30, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_11.png"
   },
   {
     "navn": "Rebecca",
-    "vunnet": 0,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_10.png"
+    "vunnet": [[0, "2025-05-01"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_10.png"
   },
   {
     "navn": "Julie",
-    "vunnet": 75,
-	"avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
+    "vunnet": [[0, "2025-05-01"], [75, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
   }
 ]

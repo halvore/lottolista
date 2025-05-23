@@ -3,14 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>🎲 Lottolista</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="src/index.css" />
   </head>
   <body>
     <div id="root"></div>
 
-    <script>
+    <script type="module">
+      import React, { useState, useEffect } from 'https://esm.sh/react@18';
+      import { createRoot } from 'https://esm.sh/react-dom@18/client';
+      // import { getISOWeek, getISOWeekYear, parseISO, subWeeks } from 'https://cdn.skypack.dev/date-fns';
+
+      const formatter = new Intl.NumberFormat("nb-NO");
+
       const App = () => {
         const [data, setData] = React.useState(null);
 
@@ -25,7 +29,15 @@
               return response.json();
             })
             .then((data) => {
-              setData(data.sort((a, b) => b.vunnet - a.vunnet));
+              const withTotal = data.map((entry) => {
+                const total = entry.vunnet.reduce(
+                  (sum, [amount]) => sum + amount,
+                  0
+                );
+                return { ...entry, total };
+              });
+              withTotal.sort((a, b) => b.total - a.total);
+              setData(withTotal);
             })
             .catch((error) => {
               console.error("Fetch error:", error);
@@ -100,7 +112,9 @@
 
               React.createElement("div", null, "Navn"),
 
-              React.createElement("div", null, "Gevinst")
+              React.createElement("div", null, "Gevinst"),
+
+              React.createElement("div", null, "Endring"),
             ),
 
             React.createElement(
@@ -122,10 +136,15 @@
                   ),
                   React.createElement(
                     "span",
-                    null,
+                    { className: "total" },
                     " ",
-                    leader.vunnet + ",-",
+                    formatter.format(leader.total) + ",-",
                     " "
+                  ),
+                  React.createElement(
+                    "span",
+                    { className: "change" },
+                    "🠙 - 🠛"
                   )
                 )
               )
@@ -133,11 +152,9 @@
           )
         );
       };
-
-      ReactDOM.render(
-        React.createElement(App, null),
-        document.getElementById("root")
-      );
+      
+      const root = createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
     </script>
   </body>
 </html>
