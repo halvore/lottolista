@@ -53,5 +53,10 @@
     "navn": "Julie",
     "vunnet": [[0, "2025-05-01"], [75, "2025-05-12"]],
     "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
+  },
+  {
+    "navn": "Thomas S",
+    "vunnet": [[0, "2025-05-01"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_13.png"
   }
 ]
