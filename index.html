@@ -10,8 +10,25 @@
   <body>
     <div id="root"></div>
 
-    <script type="module">
+    <script>
       const formatter = new Intl.NumberFormat("nb-NO");
+
+      function totalTilOgMedForrigeUke(vunnet) {
+        const idag = new Date();
+        const forrigeSøndag = new Date(idag);
+        forrigeSøndag.setDate(idag.getDate() - idag.getDay()); // Går tilbake til forrige søndag (eller i dag hvis søndag)
+
+        let sum = 0;
+
+        for (const [beløp, datoStr] of vunnet) {
+          const dato = new Date(datoStr);
+          if (dato <= forrigeSøndag) {
+            sum += beløp;
+          }
+        }
+
+        return sum;
+      }
 
       const App = () => {
         const [data, setData] = React.useState(null);
@@ -28,11 +45,12 @@
             })
             .then((data) => {
               const withTotal = data.map((entry) => {
+                const totaltForrigeUke = totalTilOgMedForrigeUke(entry.vunnet);
                 const total = entry.vunnet.reduce(
                   (sum, [amount]) => sum + amount,
                   0
                 );
-                return { ...entry, total };
+                return { ...entry, total, totaltForrigeUke };
               });
               withTotal.sort((a, b) => b.total - a.total);
               setData(withTotal);
@@ -112,7 +130,7 @@
 
               React.createElement("div", null, "Gevinst"),
 
-              React.createElement("div", null, "Endring"),
+              React.createElement("div", null, "Endring")
             ),
 
             React.createElement(
@@ -139,18 +157,14 @@
                     formatter.format(leader.total) + ",-",
                     " "
                   ),
-                  React.createElement(
-                    "span",
-                    { className: "change" },
-                    "🠙 - 🠛"
-                  )
+                  React.createElement("span", { className: "change" }, "🠙 - 🠛")
                 )
               )
             )
           )
         );
       };
-      
+
       ReactDOM.render(
         React.createElement(App, null),
         document.getElementById("root")
