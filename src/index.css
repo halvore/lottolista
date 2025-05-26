@@ -178,7 +178,7 @@ body {
 .container .player {
   background-color: #780629;
   display: grid;
-  grid-template-columns: 0.4fr 3fr 1fr 1fr;
+  grid-template-columns: 0.4fr 3fr 2fr 3fr;
   gap: 0.4rem;
   align-items: center;
   min-height: 42px;
@@ -194,7 +194,7 @@ body {
   margin-right: 1rem;
   display: grid;
   font-size: 14px;
-  grid-template-columns: 0.4fr 3fr 1fr 1fr;
+  grid-template-columns: 0.4fr 3fr 2fr 3fr;
   gap: 0.4rem;
   text-align: center;
 }
