@@ -233,7 +233,7 @@
         const [data, setData] = React.useState(null);
 
         React.useEffect(() => {
-          fetch("data.json")
+          fetch(`data.json?ts=${Date.now()}`, { cache: 'no-store' })
             .then((response) => {
               if (!response.ok) {
                 throw new Error(
