@@ -122,10 +122,19 @@
                   forrigeRang: rangeringFør[spiller.navn] || null,
                 }))
                 .sort((a, b) => b.total - a.total)
-                .map((spiller, idx) => ({
-                  ...spiller,
-                  nåværendeRang: idx + 1,
-                }));
+                .reduce((acc, spiller, idx) => {
+                  const forrige = acc[idx - 1];
+                  const likSomForrige =
+                    forrige && spiller.total === forrige.total;
+                  const rang = likSomForrige ? forrige.nåværendeRang : idx + 1;
+
+                  acc.push({
+                    ...spiller,
+                    nåværendeRang: rang,
+                  });
+
+                  return acc;
+                }, []);
 
               setData(medRangering);
             })
@@ -180,7 +189,7 @@
                   React.createElement(
                     "span",
                     { className: "playerrank" },
-                    index + 1,
+                    leader.nåværendeRang,
                     " ",
                     React.createElement(
                       "span",
