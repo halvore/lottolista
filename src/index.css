@@ -54,8 +54,18 @@ body {
 }
 
 .total,
-.change {
+.change,
+.gevinst7 {
   text-align: right;
+}
+
+.change {
+  display: inline-flex;
+  align-items: center;
+}
+
+.gevinst7 {
+  color: yellow;
 }
 
 .container .image {
@@ -178,13 +188,21 @@ body {
 .container .player {
   background-color: #780629;
   display: grid;
-  grid-template-columns: 0.4fr 3fr 2fr 3fr;
+  grid-template-columns: 1fr 3fr 2fr 2fr;
   gap: 0.4rem;
   align-items: center;
   min-height: 42px;
   text-align: center;
-  padding: 0.4rem 1rem 0 0;
+  padding: 0.4rem 1rem 0 1rem;
 }
+
+.player .playerrank {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0.75rem;
+}
+
 .container .player .image {
   width: 28px;
   height: 28px;
@@ -192,9 +210,10 @@ body {
 }
 .container .table {
   margin-right: 1rem;
+  margin-left: 1rem;
   display: grid;
   font-size: 14px;
-  grid-template-columns: 0.4fr 3fr 2fr 3fr;
+  grid-template-columns: 1fr 3fr 2fr 2fr;
   gap: 0.4rem;
   text-align: center;
 }
