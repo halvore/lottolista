@@ -16,13 +16,13 @@ app.use(express.json());
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'lottolista-secret-change-in-production',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: { 
         maxAge: 24 * 60 * 60 * 1000,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'lax',
-        httpOnly: true
+        secure: false,
+        sameSite: 'lax',
+        httpOnly: false
     }
 }));
 
