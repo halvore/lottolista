@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottolista Admin - Innlogging</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .google-login-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #4285f4;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .google-login-btn:hover {
+            background: #357ae8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .info {
+            background: #e2e8f0;
+            color: #2d3748;
+            border: 1px solid #cbd5e0;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">🎲</div>
+        <h1>Lottolista Admin</h1>
+        <p class="subtitle">Logg inn med Google for å få tilgang til admin-panelet</p>
+        
+        <div id="messages"></div>
+        
+        <a href="/auth/google" class="google-login-btn">
+            <div class="google-icon">G</div>
+            Logg inn med Google
+        </a>
+        
+        <a href="/" class="back-link">← Tilbake til hovedsiden</a>
+    </div>
+
+    <script>
+        function showMessage(message, type) {
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
+        }
+
+        // Check for URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (urlParams.has('error')) {
+            const error = urlParams.get('error');
+            if (error === 'access_denied') {
+                showMessage('❌ Tilgang nektet. Din e-postadresse er ikke på listen over godkjente administratorer.', 'error');
+            } else {
+                showMessage('❌ En feil oppstod under innlogging. Prøv igjen.', 'error');
+            }
+        }
+        
+        if (urlParams.has('message')) {
+            const message = urlParams.get('message');
+            if (message === 'logged_out') {
+                showMessage('✅ Du er nå logget ut.', 'success');
+            }
+        }
+
+        // Check if user is already authenticated
+        fetch('/auth/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.authenticated) {
+                    showMessage('🔄 Du er allerede innlogget. Omdirigerer...', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/admin/';
+                    }, 1500);
+                }
+            })
+            .catch(error => {
+                console.log('Not authenticated, staying on login page');
+            });
+    </script>
+</body>
+</html>

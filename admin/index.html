@@ -198,6 +198,10 @@
         <div class="header">
             <h1>🎲 Lottolista Admin</h1>
             <p>Administrer deltakere og gevinster</p>
+            <div style="margin-top: 10px;">
+                <span id="userInfo" style="font-size: 14px; opacity: 0.8;"></span>
+                <a href="/auth/logout" style="color: white; text-decoration: none; margin-left: 15px; font-size: 14px;">Logg ut</a>
+            </div>
         </div>
 
         <div id="status"></div>
@@ -401,7 +405,21 @@
             `).join('');
         }
 
-        loadData();
+        // Load user info and check authentication
+        fetch('/auth/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.authenticated) {
+                    document.getElementById('userInfo').textContent = `Innlogget som: ${data.user.name} (${data.user.email})`;
+                    loadData();
+                } else {
+                    window.location.href = '/auth/login';
+                }
+            })
+            .catch(error => {
+                console.error('Auth check failed:', error);
+                window.location.href = '/auth/login';
+            });
     </script>
 </body>
 </html>
