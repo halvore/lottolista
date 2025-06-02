@@ -18,6 +18,7 @@ body {
 .container {
   display: grid;
   grid-template-columns: 1fr calc(450px + 2rem) 1fr;
+  gap: 5vw;
   width: 90vw;
   height: 90vh;
   margin: auto;
@@ -50,6 +51,7 @@ body {
 
 .logo-container {
   height: 200px;
+  text-align: center;
 }
 
 .logo {
