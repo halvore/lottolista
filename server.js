@@ -238,8 +238,8 @@ app.get('/data.json', async (req, res) => {
     }
 });
 
-// Get current data from Supabase (admin only)
-app.get('/api/data', requireAuthAPI, async (req, res) => {
+// Get current data from Supabase (public)
+app.get('/api/data', async (req, res) => {
     try {
         const { data: participants, error: participantsError } = await supabase
             .from('participants')

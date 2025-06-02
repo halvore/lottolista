@@ -72,7 +72,7 @@
         const [data, setData] = React.useState(null);
 
         const fetchData = () => {
-          fetch(`data.json?ts=${Date.now()}`, { cache: "no-store" })
+          fetch(`/api/data?ts=${Date.now()}`, { cache: "no-store" })
             .then((response) => {
               if (!response.ok) {
                 throw new Error(
