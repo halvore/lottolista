@@ -178,6 +178,11 @@ app.get('/auth/status', (req, res) => {
     }
 });
 
+// Root route - serve main page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Protect admin directory
 app.get('/admin/*', requireAuth, (req, res, next) => {
     next();
