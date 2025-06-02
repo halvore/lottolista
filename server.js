@@ -183,7 +183,43 @@ app.get('/admin/*', requireAuth, (req, res, next) => {
     next();
 });
 
-// Get current data from Supabase
+// Public data endpoint for main page
+app.get('/data.json', async (req, res) => {
+    try {
+        const { data: participants, error: participantsError } = await supabase
+            .from('participants')
+            .select('*')
+            .order('id', { ascending: true });
+
+        if (participantsError) throw participantsError;
+
+        const { data: winnings, error: winningsError } = await supabase
+            .from('winnings')
+            .select('*')
+            .order('date', { ascending: true });
+
+        if (winningsError) throw winningsError;
+
+        const formattedData = participants.map(participant => {
+            const participantWinnings = winnings
+                .filter(w => w.participant_id === participant.id)
+                .map(w => [w.amount, w.date]);
+
+            return {
+                navn: participant.navn,
+                vunnet: participantWinnings,
+                avatar: participant.avatar
+            };
+        });
+
+        res.json(formattedData);
+    } catch (error) {
+        console.error('Error fetching public data from Supabase:', error);
+        res.status(500).json({ error: 'Could not fetch data from database' });
+    }
+});
+
+// Get current data from Supabase (admin only)
 app.get('/api/data', requireAuthAPI, async (req, res) => {
     try {
         const { data: participants, error: participantsError } = await supabase
