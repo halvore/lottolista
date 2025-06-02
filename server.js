@@ -183,6 +183,15 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Static file routes
+app.get('/src/index.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'index.css'));
+});
+
+app.get('/assets/:filename', (req, res) => {
+    res.sendFile(path.join(__dirname, 'assets', req.params.filename));
+});
+
 // Protect admin directory
 app.get('/admin/*', requireAuth, (req, res, next) => {
     next();
