@@ -50,7 +50,7 @@ body {
 }
 
 .logo-container {
-  /* height: 200px; */
+  font-size: 0px;
   text-align: center;
 }
 
