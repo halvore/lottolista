@@ -145,10 +145,10 @@
 
         React.useEffect(() => {
           fetchData();
-          
+
           // Auto-refresh every 30 seconds
           const interval = setInterval(fetchData, 30000);
-          
+
           return () => clearInterval(interval);
         }, []);
 
@@ -172,77 +172,84 @@
               src: "assets/lottolista-logo.png",
             })
           ),
-
           React.createElement(
             "div",
-            { className: "playerslist" },
+            { className: "ledertavle" },
             React.createElement(
               "div",
-              { className: "table" },
-              React.createElement("div", { style: { textAlign: "left" } }, "#"),
-
-              React.createElement("div", null, "Navn"),
-
-              React.createElement("div", null, "Gevinst"),
-
-              React.createElement("div", null, "Siste 7 dager")
-            ),
-
-            React.createElement(
-              "div",
-              { className: "list" },
-              data.map((leader, index) =>
+              { className: "playerslist" },
+              React.createElement(
+                "div",
+                { className: "table" },
                 React.createElement(
                   "div",
-                  { className: "player", key: leader.id },
-                  React.createElement(
-                    "span",
-                    { className: "playerrank" },
-                    leader.nåværendeRang,
-                    " ",
-                    React.createElement(
-                      "span",
-                      { class: "change" },
-                      leader.nåværendeRang < leader.forrigeRang
-                        ? React.createElement(UpArrowIcon, {
-                            style: {
-                              width: "1em",
-                              height: "1em",
-                              color: "white",
-                            },
-                          })
-                        : leader.nåværendeRang > leader.forrigeRang
-                        ? React.createElement(DownArrowIcon, {
-                            style: {
-                              width: "1em",
-                              height: "1em",
-                              color: "white",
-                            },
-                          })
-                        : null
-                    )
-                  ),
+                  { style: { textAlign: "left" } },
+                  "#"
+                ),
+
+                React.createElement("div", null, "Navn"),
+
+                React.createElement("div", null, "Gevinst"),
+
+                React.createElement("div", null, "Siste 7 dager")
+              ),
+
+              React.createElement(
+                "div",
+                { className: "list" },
+                data.map((leader, index) =>
                   React.createElement(
                     "div",
-                    { className: "user" },
-                    React.createElement("img", {
-                      className: "image",
-                      src: leader.avatar,
-                    }),
-                    React.createElement("span", null, leader.navn)
-                  ),
-                  React.createElement(
-                    "span",
-                    { className: "total" },
-                    formatter.format(leader.total) + ",-"
-                  ),
-                  leader.gevinstSiste7 > 0
-                    ? React.createElement(
+                    { className: "player", key: leader.id },
+                    React.createElement(
+                      "span",
+                      { className: "playerrank" },
+                      leader.nåværendeRang,
+                      " ",
+                      React.createElement(
                         "span",
-                        { className: "gevinst7" },
-                        "+ " + formatter.format(leader.gevinstSiste7) + ",-"
+                        { class: "change" },
+                        leader.nåværendeRang < leader.forrigeRang
+                          ? React.createElement(UpArrowIcon, {
+                              style: {
+                                width: "1em",
+                                height: "1em",
+                                color: "white",
+                              },
+                            })
+                          : leader.nåværendeRang > leader.forrigeRang
+                          ? React.createElement(DownArrowIcon, {
+                              style: {
+                                width: "1em",
+                                height: "1em",
+                                color: "white",
+                              },
+                            })
+                          : null
                       )
-                    : null
+                    ),
+                    React.createElement(
+                      "div",
+                      { className: "user" },
+                      React.createElement("img", {
+                        className: "image",
+                        src: leader.avatar,
+                      }),
+                      React.createElement("span", null, leader.navn)
+                    ),
+                    React.createElement(
+                      "span",
+                      { className: "total" },
+                      formatter.format(leader.total) + ",-"
+                    ),
+                    leader.gevinstSiste7 > 0
+                      ? React.createElement(
+                          "span",
+                          { className: "gevinst7" },
+                          "+ " + formatter.format(leader.gevinstSiste7) + ",-"
+                        )
+                      : null
+                  )
                 )
               )
             )
