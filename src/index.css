@@ -18,7 +18,6 @@ body {
 .container {
   display: grid;
   grid-template-columns: minmax(0, 1fr) calc(450px + 2rem) minmax(0, 1fr);
-  gap: 5rem;
   width: 90vw;
   height: 90vh;
   margin: auto;
@@ -52,6 +51,7 @@ body {
 .logo-container {
   font-size: 0px;
   text-align: center;
+  padding: 0 5rem 0 1rem;
 }
 
 .logo {
