@@ -192,7 +192,11 @@ app.get('/assets/:filename', (req, res) => {
     res.sendFile(path.join(__dirname, 'assets', req.params.filename));
 });
 
-// Protect admin directory
+// Admin routes
+app.get('/admin/', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
 app.get('/admin/*', requireAuth, (req, res, next) => {
     next();
 });
