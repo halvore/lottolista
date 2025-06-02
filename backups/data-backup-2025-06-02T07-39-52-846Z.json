@@ -1,0 +1,67 @@
+[
+  {
+    "navn": "Espen S",
+    "vunnet": [[0, "2025-05-01"], [9090, "2025-05-12"], [150, "2025-05-31"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_3.png"
+  },
+  {
+    "navn": "Kenneth",
+    "vunnet": [[0, "2025-05-01"], [446, "2025-05-12"], [80, "2025-05-24"], [1670, "2025-05-28"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_6.png"
+  },
+  {
+    "navn": "Andreas",
+    "vunnet": [[0, "2025-05-01"], [420, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
+  },
+  {
+    "navn": "Bjørnar",
+    "vunnet": [[0, "2025-05-01"], [285, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_25.png"
+  },
+  {
+    "navn": "Halvor",
+    "vunnet": [[0, "2025-05-01"], [175, "2025-05-12"], [50, "2025-05-24"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_16.png"
+  },
+  {
+    "navn": "Henrik",
+    "vunnet": [[0, "2025-05-01"], [150, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_24.png"
+  },
+  {
+    "navn": "Åshild",
+    "vunnet": [[0, "2025-05-01"], [50, "2025-05-12"], [50, "2025-05-24"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png"
+  },
+  {
+    "navn": "Leif Erik",
+    "vunnet": [[0, "2025-05-01"], [45, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_27.png"
+  },
+  {
+    "navn": "Steingrim",
+    "vunnet": [[0, "2025-05-01"], [30, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_11.png"
+  },
+  {
+    "navn": "Rebecca",
+    "vunnet": [[0, "2025-05-01"], [30, "2025-05-28"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_10.png"
+  },
+  {
+    "navn": "Julie",
+    "vunnet": [[0, "2025-05-01"], [75, "2025-05-12"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
+  },
+  {
+    "navn": "Thomas",
+    "vunnet": [[0, "2025-05-01"], [15, "2025-05-23"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_13.png"
+  },
+  {
+    "navn": "Sjur",
+    "vunnet": [[0, "2025-05-01"], [80, "2025-05-24"]],
+    "avatar": "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_14.png"
+  }
+]

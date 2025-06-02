@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottolista Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .person-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .person-card {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+
+        .person-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .winnings {
+            background: white;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .winning-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .winning-entry:last-child {
+            border-bottom: none;
+        }
+
+        .add-winning {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .add-winning input {
+            margin: 0;
+        }
+
+        .add-winning button {
+            padding: 10px 15px;
+            width: auto;
+        }
+
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .inline-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .file-actions button {
+            width: auto;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎲 Lottolista Admin</h1>
+            <p>Administrer deltakere og gevinster</p>
+        </div>
+
+        <div id="status"></div>
+
+        <div class="section">
+            <h2>📁 Fil Operasjoner</h2>
+            <div class="file-actions">
+                <button onclick="loadData()">Last Inn Data</button>
+                <button onclick="saveData()">Lagre Data</button>
+                <button onclick="downloadData()" class="btn-secondary">Last Ned Backup</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>➕ Legg Til Ny Person</h2>
+            <div class="inline-form">
+                <div class="form-group">
+                    <label>Navn</label>
+                    <input type="text" id="newPersonName" placeholder="Navn">
+                </div>
+                <div class="form-group">
+                    <label>Avatar URL</label>
+                    <input type="url" id="newPersonAvatar" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>Initial Gevinst</label>
+                    <input type="number" id="newPersonWinning" value="0">
+                </div>
+                <button onclick="addPerson()">Legg Til</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👥 Deltakere</h2>
+            <div id="personList" class="person-list"></div>
+        </div>
+    </div>
+
+    <script>
+        let data = [];
+
+        function showStatus(message, type = 'success') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+            setTimeout(() => statusDiv.innerHTML = '', 3000);
+        }
+
+        function loadData() {
+            fetch('/api/data')
+                .then(response => response.json())
+                .then(jsonData => {
+                    data = jsonData;
+                    renderPersonList();
+                    showStatus('Data lastet inn!');
+                })
+                .catch(error => {
+                    showStatus('Feil ved lasting av data: ' + error.message, 'error');
+                });
+        }
+
+        async function saveData() {
+            try {
+                const response = await fetch('/api/data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Feil ved lagring på server');
+                }
+
+                const result = await response.json();
+                showStatus('Data lagret på filsystemet! Backup opprettet automatisk.');
+            } catch (error) {
+                showStatus('Feil ved lagring: ' + error.message, 'error');
+            }
+        }
+
+        function downloadData() {
+            const dataStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lottolista-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            
+            URL.revokeObjectURL(url);
+            showStatus('Backup lastet ned!');
+        }
+
+        function addPerson() {
+            const name = document.getElementById('newPersonName').value.trim();
+            const avatar = document.getElementById('newPersonAvatar').value.trim();
+            const initialWinning = parseInt(document.getElementById('newPersonWinning').value) || 0;
+
+            if (!name) {
+                showStatus('Navn er påkrevd!', 'error');
+                return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+            const newPerson = {
+                navn: name,
+                vunnet: [[initialWinning, today]],
+                avatar: avatar || 'https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png'
+            };
+
+            data.push(newPerson);
+            renderPersonList();
+            
+            document.getElementById('newPersonName').value = '';
+            document.getElementById('newPersonAvatar').value = '';
+            document.getElementById('newPersonWinning').value = '0';
+            
+            showStatus(`${name} lagt til!`);
+        }
+
+        function removePerson(index) {
+            if (confirm(`Er du sikker på at du vil fjerne ${data[index].navn}?`)) {
+                const name = data[index].navn;
+                data.splice(index, 1);
+                renderPersonList();
+                showStatus(`${name} fjernet!`);
+            }
+        }
+
+        function addWinning(personIndex) {
+            const amountInput = document.getElementById(`amount-${personIndex}`);
+            const dateInput = document.getElementById(`date-${personIndex}`);
+            
+            const amount = parseInt(amountInput.value) || 0;
+            const date = dateInput.value || new Date().toISOString().split('T')[0];
+
+            data[personIndex].vunnet.push([amount, date]);
+            renderPersonList();
+            showStatus(`Gevinst på ${amount} kr lagt til for ${data[personIndex].navn}!`);
+        }
+
+        function removeWinning(personIndex, winningIndex) {
+            const person = data[personIndex];
+            const winning = person.vunnet[winningIndex];
+            
+            if (confirm(`Fjerne gevinst på ${winning[0]} kr fra ${winning[1]}?`)) {
+                person.vunnet.splice(winningIndex, 1);
+                renderPersonList();
+                showStatus('Gevinst fjernet!');
+            }
+        }
+
+        function updatePersonName(personIndex, newName) {
+            if (newName.trim()) {
+                data[personIndex].navn = newName.trim();
+                showStatus(`Navn oppdatert til ${newName}!`);
+            }
+        }
+
+        function updatePersonAvatar(personIndex, newAvatar) {
+            if (newAvatar.trim()) {
+                data[personIndex].avatar = newAvatar.trim();
+                renderPersonList();
+                showStatus('Avatar oppdatert!');
+            }
+        }
+
+        function renderPersonList() {
+            const container = document.getElementById('personList');
+            container.innerHTML = data.map((person, index) => `
+                <div class="person-card">
+                    <div class="person-header">
+                        <img src="${person.avatar}" alt="${person.navn}" class="avatar" onerror="this.src='https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png'">
+                        <input type="text" value="${person.navn}" onchange="updatePersonName(${index}, this.value)" style="flex: 1; margin: 0;">
+                        <button onclick="removePerson(${index})" class="btn-danger" style="width: auto; padding: 5px 10px;">Fjern</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Avatar URL</label>
+                        <input type="url" value="${person.avatar}" onchange="updatePersonAvatar(${index}, this.value)">
+                    </div>
+
+                    <div class="winnings">
+                        <strong>Gevinster:</strong>
+                        ${person.vunnet.map((winning, wIndex) => `
+                            <div class="winning-entry">
+                                <span>${winning[0]} kr (${winning[1]})</span>
+                                <button onclick="removeWinning(${index}, ${wIndex})" class="btn-danger" style="width: auto; padding: 2px 8px; font-size: 12px;">×</button>
+                            </div>
+                        `).join('')}
+                        
+                        <div class="add-winning">
+                            <input type="number" id="amount-${index}" placeholder="Beløp" value="0">
+                            <input type="date" id="date-${index}" value="${new Date().toISOString().split('T')[0]}">
+                            <button onclick="addWinning(${index})">Legg til</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
