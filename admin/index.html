@@ -273,7 +273,7 @@
                 }
 
                 const result = await response.json();
-                showStatus('Data lagret på filsystemet! Backup opprettet automatisk.');
+                showStatus('Data lagret på filsystemet!');
             } catch (error) {
                 showStatus('Feil ved lagring: ' + error.message, 'error');
             }
